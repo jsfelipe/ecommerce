@@ -7,7 +7,7 @@ const Model = use('Model')
 const Hash = use('Hash')
 
 class User extends Model {
-  static boot () {
+  static boot() {
     super.boot()
 
     /**
@@ -21,8 +21,13 @@ class User extends Model {
     })
   }
 
+  // Ocultar password no retorno da queries
+  static get hidden() {
+    return ['password']
+  }
+
   // ACL Traits
-  static get traits () {
+  static get traits() {
     return [
       '@provider:Adonis/Acl/HasRole',
       '@provider:Adonis/Acl/HasPermission'
@@ -39,13 +44,12 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token')
   }
 
-  image()
-  {
-      return this.belongsTo('App/Models/Image')
+  image() {
+    return this.belongsTo('App/Models/Image')
   }
 }
 
