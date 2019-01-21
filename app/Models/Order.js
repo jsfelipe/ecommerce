@@ -4,6 +4,10 @@
 const Model = use('Model')
 
 class Order extends Model {
+    // Relacionamento entre o pedido e os itens 
+    items() {
+        return this.hasMany('App/Models/OrderItem')
+    }
 }
 
 module.exports = Order
